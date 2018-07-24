@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 16:01:14 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 00:12:26 by thomas           ###   ########.fr       */
+/*   Updated: 2018/07/25 01:25:32 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../include/utilities.h"
 #include "../include/ft.h"
 #include "../include/set_grid_obstacles.h"
+#include "../include/maps.h"
 #include <stdio.h>
 
 void	handle_maps(char **maps)
@@ -23,11 +24,10 @@ void	handle_maps(char **maps)
 	i = 0;
 	while (maps[i] != NULL)
 	{
-		/*if (is_error(maps[i]) == 1)
-			ft_pustr("map_error\n");
+		if (is_error(maps[i]) == 1)
+			ft_putstr("map error\n");
 		else
-			solve(maps[i], get_obstacle(maps[i]), get_filled(maps[i]));*/
-		solve(maps[i], get_obstacle(maps[i]), get_filled(maps[i]));
+			solve(maps[i], get_obstacle(maps[i]), get_filled(maps[i]));
 		if (maps[i + 1] != NULL)
 			ft_putchar('\n');
 		i++;
