@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 18:05:44 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/24 17:28:52 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/24 19:07:29 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,9 @@ int		size_header(char *map)
 	while (map[i] != '\n')
 		i++;
 	return (i + 1);
+}
+
+char 	get_plain(char *map)
+{
+	return (map[3]);
 }

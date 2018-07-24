@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 16:01:14 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/24 18:56:44 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/24 19:20:35 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	handle_maps(char **maps)
 			ft_pustr("map_error\n");
 		else
 			solve(maps[i]);*/
-		solve(maps[i], get_obstacle(maps[i]));
+		solve(maps[i], get_obstacle(maps[i]), get_plain(maps[i]));
 		i++;
 	}
 }
 
-void	solve(char *map, char obstacle)
+void	solve(char *map, char obstacle, char plain)
 {
 	int ***grid_number_obstacles;
 	int dimensions_map[2];
@@ -55,11 +55,12 @@ void	solve(char *map, char obstacle)
 		y++;
 		printf("%s\n", "");
 	}
-	set_result(result, &grid_number_obstacles, dimensions_map);
-	printf("result: x=%i, y=%i, s=%i\n", result[0], result[1], result[2]);
+	set_solution(result, &grid_number_obstacles, dimensions_map);
+	printf("\nresult: x=%i, y=%i, s=%i\n", result[0], result[1], result[2]);
+	display_solution(map, result, plain);
 }
 
-void	set_result(int result[3], int ****grid_number_obstacles,
+void	set_solution(int result[3], int ****grid_number_obstacles,
 		int dimensions[2])
 {
 	int x;
@@ -82,7 +83,7 @@ void	set_result(int result[3], int ****grid_number_obstacles,
 					[y + result[2]][0] - grid_number_obstacles[0][x]
 						[y + result[2]][0] - grid_number_obstacles[0]
 							[x + result[2]][y][0] + grid_number_obstacles[0][x]
-								[y][0] <= 0)
+								[y][0] < 0)
 			{
 				result[0] = x;
 				result[1] = y;
@@ -94,5 +95,35 @@ void	set_result(int result[3], int ****grid_number_obstacles,
 			x++;
 		}
 		y++;
+	}
+}
+
+void 	display_solution(char *map, int result[3], char plain)
+{
+	int i;
+	int x;
+	int y;
+
+	i = size_header(map);
+	x = 0;
+	y = 0;
+	while (map[i] != '\0')
+	{
+		if (map[i] == '\n')
+		{
+			y++;
+			x = 0;
+			ft_putchar(map[i]);
+		}
+		else
+		{
+			if (x >= result[0] && x <= result[0] + result[2] &&
+				y >= result[1] && y <= result[1] + result[2])
+				ft_putchar(plain);
+			else
+				ft_putchar(map[i]);
+			x++;
+		}
+		i++;
 	}
 }
