@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 16:01:14 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/24 23:08:31 by thomas           ###   ########.fr       */
+/*   Updated: 2018/07/24 23:34:01 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,20 @@ void	solve(char *map, char obstacle, char filled)
 	set_grid_number_obstacles(&grid_number_obstacles, map, obstacle,
 			dimensions_map);
 	set_solution(result, &grid_number_obstacles, dimensions_map);
+	printf("%s\n", map);
+	printf("result: x=%i  ;  y=%i  ;  s=%i\n", result[0], result[1], result[2]);
+	int y = 0, x;
+	while (y < dimensions_map[1])
+	{
+		x = 0;
+		while (x < dimensions_map[0])
+		{
+			printf("%i ", grid_number_obstacles[x][y][0]);
+			x++;
+		}
+		printf("%s\n", "");
+		y++;
+	}
 	display_solution(map, result, filled);
 }
 
@@ -75,7 +89,6 @@ void	set_solution(int result[3], int ****grid_number_obstacles,
 		}
 		y++;
 	}
-	result[2] -= 1;
 }
 
 int 	is_fit(int x, int y, int s, int ****grid_number_obstacles)
@@ -116,8 +129,8 @@ void 	display_solution(char *map, int result[3], char filled)
 		}
 		else
 		{
-			if (x >= result[0] && x <= result[0] + result[2] &&
-				y >= result[1] && y <= result[1] + result[2])
+			if (x >= result[0] && x < result[0] + result[2] &&
+				y >= result[1] && y < result[1] + result[2])
 				ft_putchar(filled);
 			else
 				ft_putchar(map[i]);

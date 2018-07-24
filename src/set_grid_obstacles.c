@@ -6,12 +6,13 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:57:12 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/24 18:23:27 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/24 23:33:28 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/set_grid_obstacles.h"
 #include "../include/utilities.h"
+#include <stdio.h>
 
 void 	set_grid_number_obstacles(int ****grid_number_obstacles, char *map,
 		char obstacle, int dimensions[2])
@@ -88,6 +89,6 @@ void 	set_first_column(int ****grid_number_obstacles, char *map,
 		grid_number_obstacles[0][0][y] = malloc(sizeof(int));
 		grid_number_obstacles[0][0][y][0] = c;
 		y++;
-		i += dimensions[0];
+		i += dimensions[0] + 1;
 	}
 }
