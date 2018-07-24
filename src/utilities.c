@@ -6,11 +6,12 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 18:05:44 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/23 18:16:01 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/24 11:12:10 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utilities.h"
+#include "../include/utilities.h"
+#include "../include/ft.h"
 
 int 	get_width(char *map)
 {
@@ -24,7 +25,7 @@ int 	get_width(char *map)
 
 int 	get_height(char *map)
 {
-	return (ft_atoi(map[0]));
+	return (ft_atoi(&map[0]));
 }
 
 char	get_obstacle(char *map)

@@ -6,12 +6,13 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 16:01:14 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/23 18:24:42 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/24 13:31:11 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/solve.h"
 #include "../include/utilities.h"
+#include "../include/ft.h"
 #include <stdio.h>
 
 void	handle_maps(char **maps)
@@ -33,43 +34,50 @@ void	handle_maps(char **maps)
 void	solve(char *map, char obstacle)
 {
 	int **obstacles_coordinates;
+	int *grid_number_obstacles;
+
+	set_obstacles_coordinates(&obstacles_coordinates, map, obstacle);
+	set_grid_number_obstacles(&grid_number_obstacles, &obstacles_coordinates, map);
+
+}
+
+void 	set_grid_number_obstacles(int **grid_number_obstacles,
+		int ***obstacles_coordinates, char *map)
+{
 	int x;
 	int y;
 	int width;
 	int height;
-	int s;
-	int	square[2];
-	int point[2];
+	int i;
+	int j;
+	int c;
 
-	set_obstacles_coordinates(&obstacles_coordinates, map, obstacle);
 	width = get_width(map);
 	height = get_height(map);
-	square[0] = 0;
-	square[1] = 0;
-	point[0] = 0;
-	point[1] = 0;
-	s = 0;
-	x = 0;
-	while (x < width)
+	*grid_number_obstacles = malloc(sizeof(int) * (width * height + 1));
+	y = 0;
+	i = 0;
+	while (y < height)
 	{
-		y = 0;
-		while (y < height)
+		x = 0;
+		while (x < width)
 		{
-			while (is_correct(point, square))
+			j = 0;
+			c = 0;
+			while (obstacles_coordinates[0][j] != NULL)
 			{
-				s++;
-				set_square(point, square, s);
+				if (x >= obstacles_coordinates[0][j][0] &&
+					y >= obstacles_coordinates[0][j][1])
+					c++;
+				j++;
 			}
-			s = 0;
-			y++;
+			grid_number_obstacles[0][i] = c;
+			x++;
+			i++;
 		}
-		x++;
+		y++;
 	}
-}
-
-int 	is_correct(int point[2], int square[2])
-{
-	
+	grid_number_obstacles[0][i] = -1;
 }
 
 void 	set_obstacles_coordinates(int ***obstacles_coordinates, char *map,
