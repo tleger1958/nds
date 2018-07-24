@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 16:01:14 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/24 23:34:01 by thomas           ###   ########.fr       */
+/*   Updated: 2018/07/24 23:40:01 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "../include/utilities.h"
 #include "../include/ft.h"
 #include "../include/set_grid_obstacles.h"
-#include <stdio.h>
 
 void	handle_maps(char **maps)
 {
@@ -43,19 +42,10 @@ void	solve(char *map, char obstacle, char filled)
 	set_grid_number_obstacles(&grid_number_obstacles, map, obstacle,
 			dimensions_map);
 	set_solution(result, &grid_number_obstacles, dimensions_map);
-	printf("%s\n", map);
-	printf("result: x=%i  ;  y=%i  ;  s=%i\n", result[0], result[1], result[2]);
-	int y = 0, x;
-	while (y < dimensions_map[1])
+	if (result[0] == 0 && result[1] == 0 && result[2] == 1)
 	{
-		x = 0;
-		while (x < dimensions_map[0])
-		{
-			printf("%i ", grid_number_obstacles[x][y][0]);
-			x++;
-		}
-		printf("%s\n", "");
-		y++;
+		result[0] = -1;
+		result[1] = -1;
 	}
 	display_solution(map, result, filled);
 }
