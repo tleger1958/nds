@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 16:01:14 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/24 18:22:19 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/24 18:56:44 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,20 @@ void	set_result(int result[3], int ****grid_number_obstacles,
 		x = 0;
 		while (x < dimensions[0])
 		{
-			while (grid_number_obstacles[0][result[0] + result[2]]
-				[result[1] + result[2]][0] - grid_number_obstacles[0]
-					[result[0]][result[1] + result[2]][0] -
-						grid_number_obstacles[0][result[0] + result[2]]
-							[result[1]][0] + grid_number_obstacles[0][result[0]]
-								[result[1]][0] <= 0)
+			if (x + s > dimensions[0] || y + s > dimensions[1])
+				break ;
+			while (grid_number_obstacles[0][x + result[2]]
+					[y + result[2]][0] - grid_number_obstacles[0][x]
+						[y + result[2]][0] - grid_number_obstacles[0]
+							[x + result[2]][y][0] + grid_number_obstacles[0][x]
+								[y][0] <= 0)
 			{
 				result[0] = x;
 				result[1] = y;
 				result[2] = s;
 				s++;
+				if (x + s > dimensions[0] || y + s > dimensions[1])
+					break ;
 			}
 			x++;
 		}
