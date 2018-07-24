@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:57:17 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/24 19:13:45 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/24 21:32:06 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 
 void	handle_maps(char **maps);
 
-void	solve(char *map, char obstacle, char plain);
+void	solve(char *map, char obstacle, char filled);
 
 void	set_solution(int result[3], int ****grid_number_obstacles,
 		int dimensions[2]);
 
-void 	display_solution(char *map, int result[3], char plain);
+void 	display_solution(char *map, int result[3], char filled);
+
+int 	is_fit(int x, int y, int s, int ****grid_number_obstacles);
 
 #endif
