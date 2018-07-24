@@ -3,7 +3,8 @@ SRC=src/main.c \
 	src/bsq.c \
 	src/stream.c \
 	src/solve.c \
-	src/utilities.c
+	src/utilities.c \
+	src/set_grid_obstacles.c
 LIBFT=libft/ft_array_size.c \
 	libft/ft_putchar.c \
 	libft/ft_putstr.c \

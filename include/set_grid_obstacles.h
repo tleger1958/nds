@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve.h                                            :+:      :+:    :+:   */
+/*   set_grid_obstacles.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/24 17:57:17 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/24 18:21:25 by thleger          ###   ########.fr       */
+/*   Created: 2018/07/24 18:23:50 by thleger           #+#    #+#             */
+/*   Updated: 2018/07/24 18:23:50 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLVE_H
-# define SOLVE_H
+#ifndef SET_GRID_OBSTACLES_H
+# define SET_GRID_OBSTACLES_H
 
 #include <stdlib.h>
 
-void	handle_maps(char **maps);
+void 	set_grid_number_obstacles(int ****grid_number_obstacles, char *map,
+		char obstacle, int dimensions[2]);
 
-void	solve(char *map, char obstacle);
+void 	set_first_line(int ****grid_number_obstacles, char *map,
+		char obstacle, int dimensions[2]);
 
-void	set_result(int result[3], int ****grid_number_obstacles,
-		int dimensions[2]);
-		
+void 	set_first_column(int ****grid_number_obstacles, char *map,
+		char obstacle, int dimensions[2]);
+
 #endif

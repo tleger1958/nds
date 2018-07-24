@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 18:05:44 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/24 11:12:10 by thomas           ###   ########.fr       */
+/*   Updated: 2018/07/24 17:28:52 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@
 int 	get_width(char *map)
 {
 	int i;
+	int c;
 
 	i = size_header(map);
+	c = 0;
 	while (map[i] != '\n')
+	{
+		c++;
 		i++;
-	return (i);
+	}
+	return (c);
 }
 
 int 	get_height(char *map)
