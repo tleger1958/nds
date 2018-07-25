@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 16:01:14 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 12:56:53 by thomas           ###   ########.fr       */
+/*   Updated: 2018/07/25 18:14:59 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,6 @@ void	solve(char *map, char obstacle, char filled)
 	dimensions_map[1] = get_height(map);
 	set_grid_number_obstacles(&grid_number_obstacles, map, obstacle,
 			dimensions_map);
-	/*printf("%s\n", map);
-	int y = 0, x;
-	while (y < dimensions_map[1])
-	{
-		x = 0;
-		while (x < dimensions_map[0])
-		{
-			printf("%i ", grid_number_obstacles[x][y][0]);
-			x++;
-		}
-		printf("%s\n", "");
-		y++;
-	}*/
 	set_solution(result, &grid_number_obstacles, dimensions_map);
 	display_solution(map, result, filled);
 }
@@ -72,11 +59,11 @@ void	set_solution(int result[3], int ****grid_number_obstacles,
 	result[1] = -1;
 	result[2] = 0;
 	s = 1;
-	y = 0;
-	while (y < dimensions[1])
+	y = -1;
+	while (++y < dimensions[1])
 	{
-		x = 0;
-		while (x < dimensions[0])
+		x = -1;
+		while (++x < dimensions[0])
 		{
 			while (x + s <= dimensions[0] && y + s <= dimensions[1] &&
 				is_fit(x, y, s, grid_number_obstacles) == 1)
@@ -86,13 +73,11 @@ void	set_solution(int result[3], int ****grid_number_obstacles,
 				result[2] = s;
 				s++;
 			}
-			x++;
 		}
-		y++;
 	}
 }
 
-int 	is_fit(int x, int y, int s, int ****grid_number_obstacles)
+int		is_fit(int x, int y, int s, int ****grid_number_obstacles)
 {
 	int tl;
 	int bl;
@@ -105,23 +90,21 @@ int 	is_fit(int x, int y, int s, int ****grid_number_obstacles)
 	bl = x == -1 ? 0 : grid_number_obstacles[0][x][y + s][0];
 	tr = y == -1 ? 0 : grid_number_obstacles[0][x + s][y][0];
 	br = grid_number_obstacles[0][x + s][y + s][0];
-
-	//printf("%i - %i - %i + %i\n", br, bl, tr, tl);
 	if (br - bl - tr + tl > 0)
 		return (0);
 	return (1);
 }
 
-void 	display_solution(char *map, int result[3], char filled)
+void	display_solution(char *map, int result[3], char filled)
 {
 	int i;
 	int x;
 	int y;
 
-	i = size_header(map);
+	i = size_header(map) - 1;
 	x = 0;
 	y = 0;
-	while (map[i] != '\0')
+	while (map[++i] != '\0')
 	{
 		if (map[i] == '\n')
 		{
@@ -138,6 +121,5 @@ void 	display_solution(char *map, int result[3], char filled)
 				ft_putchar(map[i]);
 			x++;
 		}
-		i++;
 	}
 }

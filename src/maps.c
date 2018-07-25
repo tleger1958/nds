@@ -1,12 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   maps.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/25 16:20:23 by thleger           #+#    #+#             */
+/*   Updated: 2018/07/25 18:17:59 by thleger          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/maps.h"
 #include "../include/stream.h"
 #include "../include/ft.h"
 #include "../include/utilities.h"
 
-/*
-*	Cette fonction prend, pour chaque fichier passé en paramètre, son contenu,
-*	et le place dans une ligne du tableau 'maps'.
-*/
 void	set_maps(char ***maps, int argc, char **argv)
 {
 	int	i;
@@ -22,12 +30,12 @@ void	set_maps(char ***maps, int argc, char **argv)
 	(*maps)[i - 1] = NULL;
 }
 
-int 	is_error(char *map)
+int		is_error(char *map)
 {
-	int		i;
-	int 	j;
+	int i;
+	int j;
 
-	if (*map == '\0')
+	if (*map == '\0' || size_header(map) == -1)
 		return (1);
 	i = size_header(map) - 4;
 	j = 0;
@@ -39,13 +47,13 @@ int 	is_error(char *map)
 	}
 	if (map[i] == map[i + 1] || map[i] == map[i + 2] ||
 		map[i + 1] == map[i + 2])
-		return(1);
+		return (1);
 	if (body_error(map, map[i], map[i + 1]) == 1)
 		return (1);
 	return (0);
 }
 
-int 	body_error(char *map, char empty, char obstacle)
+int		body_error(char *map, char empty, char obstacle)
 {
 	int i;
 	int c;

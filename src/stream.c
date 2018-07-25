@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 16:44:18 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 10:09:06 by thomas           ###   ########.fr       */
+/*   Updated: 2018/07/25 18:07:17 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		number_char_file(char *name_file)
 	return (n);
 }
 
-void 	copy_file_to_str(char *str, char *name_file)
+void	copy_file_to_str(char *str, char *name_file)
 {
 	int		file;
 	char	c;
@@ -52,10 +52,15 @@ void 	copy_file_to_str(char *str, char *name_file)
 	}
 }
 
-void 	read_input(void)
+void	create_tmp(void)
 {
-	char input;
+	int 	file;
+	char	c;
 
-	while (read(0, &input, 1) != 0)
-		write (1, &input, 1);
+	file = open("temp/tmp.txt", O_WRONLY | O_TRUNC);
+	while(read(STDIN_FILENO, &c, 1) > 0)
+	{
+		write(file, &c, 1);
+	}
+	close(file);
 }

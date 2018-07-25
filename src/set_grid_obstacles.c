@@ -6,14 +6,14 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:57:12 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 12:57:00 by thomas           ###   ########.fr       */
+/*   Updated: 2018/07/25 18:15:27 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/set_grid_obstacles.h"
 #include "../include/utilities.h"
 
-void 	set_grid_number_obstacles(int ****grid_number_obstacles, char *map,
+void	set_grid_number_obstacles(int ****grid_number_obstacles, char *map,
 		char obstacle, int dimensions[2])
 {
 	int x;
@@ -32,23 +32,22 @@ void 	set_grid_number_obstacles(int ****grid_number_obstacles, char *map,
 		{
 			y++;
 			x = 0;
-			i++;
+			i = map[i + 1] == '\0' ? i : i + 1;
 		}
 		else
 		{
 			c = map[i] == obstacle ? 1 : 0;
 			grid_number_obstacles[0][x][y] = malloc(sizeof(int));
-			grid_number_obstacles[0][x][y][0] =
-				grid_number_obstacles[0][x - 1][y][0] +
-					grid_number_obstacles[0][x][y - 1][0] -
-						grid_number_obstacles[0][x - 1][y - 1][0] + c;
+			grid_number_obstacles[0][x][y][0] = grid_number_obstacles[0][x - 1]
+				[y][0] + grid_number_obstacles[0][x][y - 1][0] -
+					grid_number_obstacles[0][x - 1][y - 1][0] + c;
 		}
 		x++;
 		i++;
 	}
 }
 
-void 	set_first_line(int ****grid_number_obstacles, char *map,
+void	set_first_line(int ****grid_number_obstacles, char *map,
 		char obstacle, int dimensions[2])
 {
 	int x;
@@ -71,7 +70,7 @@ void 	set_first_line(int ****grid_number_obstacles, char *map,
 	}
 }
 
-void 	set_first_column(int ****grid_number_obstacles, char *map,
+void	set_first_column(int ****grid_number_obstacles, char *map,
 		char obstacle, int dimensions[2])
 {
 	int y;
