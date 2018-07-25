@@ -1,6 +1,5 @@
 #include "../include/maps.h"
 #include "../include/stream.h"
-#include "../include/map_error.h"
 #include "../include/ft.h"
 #include "../include/utilities.h"
 
