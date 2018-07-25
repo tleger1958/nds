@@ -58,12 +58,9 @@ int 	body_error(char *map, char empty, char obstacle)
 	c = 0;
 	while (map[i] != '\0')
 	{
-		//printf("map[%i]=%c\n", i, map[i]);
 		if (map[i] == '\n')
 		{
 			width = width == 0 ? c : width;
-			//printf("c=%i\n", c);
-			//printf("width=%i\n", width);
 			if (c != width)
 				return (1);
 			width = c;
@@ -78,8 +75,7 @@ int 	body_error(char *map, char empty, char obstacle)
 		}
 		i++;
 	}
-	//printf("height=%i\n", height);
-	if (width == 0 || height != get_height(map))
+	if (width == 0 || height != get_height(map) || map[i - 1] != '\n')
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 18:05:44 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 10:15:33 by thomas           ###   ########.fr       */
+/*   Updated: 2018/07/25 12:45:59 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,21 @@ int 	get_height(char *map)
 {
 	int		i;
 	int 	j;
-	char	*height;
+	char	*str_height;
+	int 	height;
 
 	i = size_header(map) - 4;
-	height = malloc((i + 1) * sizeof(char));
+	str_height = malloc((i + 1) * sizeof(char));
 	j = 0;
 	while (j < i)
 	{
-		height[j] = map[j];
+		str_height[j] = map[j];
 		j++;
 	}
-	height[j] = '\0';
-	return (ft_atoi(height));
+	str_height[j] = '\0';
+	height = ft_atoi(str_height);
+	free(str_height);
+	return (height);
 }
 
 char	get_obstacle(char *map)
