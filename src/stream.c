@@ -6,11 +6,12 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 16:44:18 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 21:02:20 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/25 21:34:29 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/stream.h"
+#include "../include/stream_caca.h"
 
 int		number_char_file(char *name_file)
 {
@@ -29,12 +30,8 @@ int		number_char_file(char *name_file)
 	{
 		chars[n % 4] = c;
 		if (c == '\n' && return_line == 0)
-		{
-			chars[4] = chars[1];
-			chars[5] = chars[2];
-			return_line = 1;
-		}
-		if (return_line == 1 && c != chars[4] && c != chars[5])
+			caca_2(chars, n, &return_line);
+		if (return_line == 1 && c != '\n' && c != chars[4] && c != chars[5])
 			return (-1);
 		n++;
 	}
@@ -74,13 +71,12 @@ void	create_tmp(void)
 	{
 		chars[i % 4] = c;
 		if (c == '\n' && return_line == 0)
+			caca_1(chars, i, &return_line);
+		if (return_line == 1 && c != '\n' && c != chars[4] && c != chars[5])
 		{
-			chars[4] = chars[1];
-			chars[5] = chars[2];
-			return_line = 1;
-		}
-		if (return_line == 1 && c != chars[4] && c != chars[5])
+			write(file, &c, 1);
 			break ;
+		}
 		write(file, &c, 1);
 		i++;
 	}

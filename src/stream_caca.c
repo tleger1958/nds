@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   stream_caca.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 15:14:21 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 21:34:33 by thleger          ###   ########.fr       */
+/*   Created: 2018/07/25 21:30:45 by thleger           #+#    #+#             */
+/*   Updated: 2018/07/25 21:34:24 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/maps.h"
-#include "../include/stream.h"
-#include "../include/ft.h"
-#include "../include/solve.h"
+#include "../include/stream_caca.h"
 
-int		main(int argc, char **argv)
+void	caca_1(char chars[6], int i, int *return_line)
 {
-	char	**maps;
-	char	*av[2];
+	chars[4] = chars[(i - 3) % 4];
+	chars[5] = chars[(i - 2) % 4];
+	*return_line = 1;
+}
 
-	av[0] = argv[0];
-	av[1] = "temp/tmp.txt";
-	if (argc == 1)
-	{
-		create_tmp();
-		set_maps(&maps, 2, av);
-	}
-	else
-		set_maps(&maps, argc, argv);
-	handle_maps(maps);
-	return (0);
+void	caca_2(char chars[6], int n, int *return_line)
+{
+	chars[4] = chars[(n - 3) % 4];
+	chars[5] = chars[(n - 2) % 4];
+	*return_line = 1;
 }
