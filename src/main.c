@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 15:14:21 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 17:14:32 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:21:48 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 
 int		main(int argc, char **argv)
 {
-	char **maps;
-	char *av[2];
-
+	char	**maps;
+	char	*av[2];
 
 	av[0] = argv[0];
-	av[1]= "temp/tmp.txt";
+	av[1] = "temp/tmp.txt";
 	if (argc == 1)
 	{
 		create_tmp();

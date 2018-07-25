@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 18:05:44 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 18:27:02 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:19:40 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		get_height(char *map)
 	int						i;
 	int						j;
 	char					*str_height;
-	unsigned long long int 	height;
+	unsigned long long int	height;
 
 	i = size_header(map) - 4;
 	str_height = malloc((i + 1) * sizeof(char));

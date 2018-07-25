@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:57:12 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 18:15:27 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:51:20 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,31 @@ void	set_grid_number_obstacles(int ****grid_number_obstacles, char *map,
 	{
 		if (map[i] == '\n')
 		{
-			y++;
-			x = 0;
+			truc_de_merde_car_la_norminette_c_de_la_merde(&y, &x);
 			i = map[i + 1] == '\0' ? i : i + 1;
 		}
 		else
 		{
 			c = map[i] == obstacle ? 1 : 0;
-			grid_number_obstacles[0][x][y] = malloc(sizeof(int));
-			grid_number_obstacles[0][x][y][0] = grid_number_obstacles[0][x - 1]
-				[y][0] + grid_number_obstacles[0][x][y - 1][0] -
-					grid_number_obstacles[0][x - 1][y - 1][0] + c;
+			set_grid_number(x, y, c, grid_number_obstacles);
 		}
 		x++;
 		i++;
 	}
+}
+
+void	truc_de_merde_car_la_norminette_c_de_la_merde(int *y, int *x)
+{
+	(*y)++;
+	*x = 0;
+}
+
+void	set_grid_number(int x, int y, int c, int ****grid_number_obstacles)
+{
+	grid_number_obstacles[0][x][y] = malloc(sizeof(int));
+	grid_number_obstacles[0][x][y][0] = grid_number_obstacles[0][x - 1]
+		[y][0] + grid_number_obstacles[0][x][y - 1][0] -
+			grid_number_obstacles[0][x - 1][y - 1][0] + c;
 }
 
 void	set_first_line(int ****grid_number_obstacles, char *map,

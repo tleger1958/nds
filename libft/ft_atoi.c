@@ -6,15 +6,15 @@
 /*   By: cseguier <cseguier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 12:02:50 by cseguier          #+#    #+#             */
-/*   Updated: 2018/07/25 18:05:42 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:21:08 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 unsigned long long int	ft_atoi(char *str)
 {
-	int			i;
+	int						i;
 	unsigned long long int	nb;
-	int 		sign;
+	int						sign;
 
 	i = 0;
 	nb = 0;

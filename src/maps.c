@@ -6,7 +6,7 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 16:20:23 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/25 18:17:59 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:42:39 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,17 @@ void	set_maps(char ***maps, int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		(*maps)[i - 1] = malloc((number_char_file(argv[i]) + 1) * sizeof(char));
-		copy_file_to_str((*maps)[i - 1], argv[i]);
+		if (number_char_file(argv[i]) == -1)
+		{
+			(*maps)[i - 1] = malloc(sizeof(char));
+			(*maps)[i - 1][0] = '\0';
+		}
+		else
+		{
+			(*maps)[i - 1] = malloc((number_char_file(argv[i]) + 1) *
+				sizeof(char));
+			copy_file_to_str((*maps)[i - 1], argv[i]);
+		}
 		i++;
 	}
 	(*maps)[i - 1] = NULL;
@@ -62,18 +71,14 @@ int		body_error(char *map, char empty, char obstacle)
 
 	height = 0;
 	width = 0;
-	i = size_header(map);
+	i = size_header(map) - 1;
 	c = 0;
-	while (map[i] != '\0')
+	while (map[++i] != '\0')
 	{
 		if (map[i] == '\n')
 		{
-			width = width == 0 ? c : width;
-			if (c != width)
+			if (return_line(&width, &c, &height) == 1)
 				return (1);
-			width = c;
-			c = 0;
-			height++;
 		}
 		else
 		{
@@ -81,9 +86,18 @@ int		body_error(char *map, char empty, char obstacle)
 				return (1);
 			c++;
 		}
-		i++;
 	}
-	if (width == 0 || height != get_height(map) || map[i - 1] != '\n')
+	return (width == 0 || height != get_height(map) || map[i - 1] != '\n' ?
+		1 : 0);
+}
+
+int		return_line(int *width, int *c, int *height)
+{
+	*width = *width == 0 ? *c : *width;
+	if (*c != *width)
 		return (1);
+	*width = *c;
+	*c = 0;
+	(*height)++;
 	return (0);
 }

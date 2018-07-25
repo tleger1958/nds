@@ -6,13 +6,11 @@
 /*   By: thleger <thleger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 20:18:05 by thleger           #+#    #+#             */
-/*   Updated: 2018/07/23 16:55:39 by thleger          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:22:25 by thleger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft.h"
-
-void	ft_putchar(char c);
 
 void	ft_putstr(char *str)
 {
